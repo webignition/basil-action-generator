@@ -24,11 +24,6 @@ class ActionGeneratorTest extends \PHPUnit\Framework\TestCase
 
     public function generateDataProvider(): array
     {
-        /**
-        'identifierString' => '"//*[@id=\"element-id\"]"',
-        'expectedIdentifier' => new DomIdentifier('//*[@id="element-id"]'),
-         */
-
         return [
             'click action, css selector' => [
                 'actionString' => 'click ".selector"',

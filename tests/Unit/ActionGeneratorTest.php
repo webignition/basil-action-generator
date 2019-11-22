@@ -24,14 +24,28 @@ class ActionGeneratorTest extends \PHPUnit\Framework\TestCase
 
     public function generateDataProvider(): array
     {
+        /**
+        'identifierString' => '"//*[@id=\"element-id\"]"',
+        'expectedIdentifier' => new DomIdentifier('//*[@id="element-id"]'),
+         */
+
         return [
-            'default' => [
+            'click action, css selector' => [
                 'actionString' => 'click ".selector"',
                 'expectedAction' => new InteractionAction(
                     'click ".selector"',
                     ActionTypes::CLICK,
                     new DomIdentifier('.selector'),
                     '".selector"'
+                ),
+            ],
+            'click action, xpath expression containing escaped double quotes' => [
+                'actionString' => 'click "//*[@id=\"element-id\"]"',
+                'expectedAction' => new InteractionAction(
+                    'click "//*[@id=\"element-id\"]"',
+                    ActionTypes::CLICK,
+                    new DomIdentifier('//*[@id="element-id"]'),
+                    '"//*[@id=\"element-id\"]"'
                 ),
             ],
         ];
